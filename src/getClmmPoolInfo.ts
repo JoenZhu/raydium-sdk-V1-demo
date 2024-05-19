@@ -1,10 +1,7 @@
-import {
-  PoolInfoLayout,
-  SqrtPriceMath,
-} from '@raydium-io/raydium-sdk';
-import { PublicKey } from '@solana/web3.js';
+import { PoolInfoLayout, SqrtPriceMath } from '@raydium-io/raydium-sdk'
+import { PublicKey } from '@solana/web3.js'
 
-import { connection } from '../config';
+import { connection } from '../config'
 
 async function getClmmPoolInfo() {
   const id = new PublicKey('< pool id >')
@@ -15,7 +12,10 @@ async function getClmmPoolInfo() {
 
   const poolData = PoolInfoLayout.decode(accountInfo.data)
 
-  console.log('current price -> ', SqrtPriceMath.sqrtPriceX64ToPrice(poolData.sqrtPriceX64, poolData.mintDecimalsA, poolData.mintDecimalsB))
+  console.log(
+    'current price -> ',
+    SqrtPriceMath.sqrtPriceX64ToPrice(poolData.sqrtPriceX64, poolData.mintDecimalsA, poolData.mintDecimalsB)
+  )
 }
 
 getClmmPoolInfo()
