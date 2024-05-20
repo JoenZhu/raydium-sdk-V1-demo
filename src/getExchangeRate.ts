@@ -42,6 +42,8 @@ async function swapOnlyAmm(input: TestTxInputInfo) {
 
   console.log(exchange)
 
+  const { amountOut, minAmountOut, currentPrice } = exchange
+
   // -------- step 2: create instructions by SDK function --------
   // const { innerTransactions } = await Liquidity.makeSwapInstructionSimple({
   //   connection,
@@ -56,7 +58,14 @@ async function swapOnlyAmm(input: TestTxInputInfo) {
   //   makeTxVersion,
   // })
 
-  // console.log('amountOut:', amountOut.toFixed(), '  minAmountOut: ', minAmountOut.toFixed())
+  console.log(
+    'amountOut:',
+    amountOut.toFixed(),
+    '  minAmountOut: ',
+    minAmountOut.toFixed(),
+    ' currentPrice: ',
+    currentPrice.toFixed()
+  )
 
   // return { txids: await buildAndSendTx(innerTransactions) }
 }
@@ -64,7 +73,7 @@ async function swapOnlyAmm(input: TestTxInputInfo) {
 async function howToUse() {
   const inputToken = DEFAULT_TOKEN.WSOL // USDC
   const outputToken = new Token(TOKEN_PROGRAM_ID, new PublicKey('ukHH6c7mMyiWCf1b9pnWe25TSpkDDt3H5pQZgZ74J82'), 6)
-  const targetPool = 'ukHH6c7mMyiWCf1b9pnWe25TSpkDDt3H5pQZgZ74J82' // USDC-RAY pool
+  const targetPool = 'DSUvc5qf5LJHHV5e2tD184ixotSnCnwj7i4jJa4Xsrmt' // USDC-RAY pool
   const inputTokenAmount = new TokenAmount(inputToken, 1 * LAMPORTS_PER_SOL)
   const slippage = new Percent(1, 100)
   // const walletTokenAccounts = await getWalletTokenAccount(connection, wallet.publicKey)
